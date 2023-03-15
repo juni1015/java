@@ -9,15 +9,13 @@ public class 다형성 {
 //		a.eat();
 //		a.cry();
 		
-		
 		Animal a = new Dog();
-//		test(a);
-		a.a = new Dog();
-		
 		//다형성 : 부모타입의 객체에 자식 생성자로 생성할 수 있는 것
 		//특징 : Animal 객체이기 때문에 Animal 다 사용 가능하고 
 		//		자식클래스는 오버라이딩 된 것만 사용 가능함
 		
+//		test(a);
+//		a.a = new Dog();
 	}
 	
 	public static void test(Animal a) {
@@ -27,7 +25,7 @@ public class 다형성 {
 }
 
 class Animal {
-	Animal a = new Animal();
+//	Animal a = new Animal();
 	public void eat() {
 		System.out.println("먹다");
 	}
