@@ -7,7 +7,7 @@ public class StudentMap {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Map<Long, String> studentMap = new HashMap<>();
+		Map<Long, StudentDTO> studentMap = new HashMap<>();
 		
 		StudentDTO studentDTO1 = new StudentDTO();
 		studentDTO1.setId(1L);
@@ -30,21 +30,22 @@ public class StudentMap {
 		studentDTO3.setStudentMajor("전자공학");
 		studentDTO3.setStudentMoblie("010-3333-3333");
 		
-		studentMap.put(1L, studentDTO1.toString());
-		studentMap.put(2L, studentDTO2.toString());
-		studentMap.put(3L, studentDTO3.toString());
+//		studentMap.put(studentDTO1.getId(), studentDTO1.toString());
+//		studentMap.put(studentDTO2.getId(), studentDTO2.toString());
+//		studentMap.put(studentDTO3.getId(), studentDTO3.toString());
 		
-//		studentMap.put(1, studentDTO1);
-//		studentMap.put(2, studentDTO2);
-//		studentMap.put(3, studentDTO3);
+		studentMap.put(studentDTO1.getId(), studentDTO1);
+		studentMap.put(studentDTO2.getId(), studentDTO2);
+		studentMap.put(studentDTO3.getId(), studentDTO3);
 		
 		System.out.println("-----------------------------------------------");
 		System.out.println("번호\t학번\t이름\t전공\t전화번호");
 		System.out.println("-----------------------------------------------");
 		
-		for(int key : studentMap.keySet()) {
+		for(Long id : studentMap.keySet()) {
 //			System.out.println(studentMap.get(key));
-			System.out.println(key + "\t" + studentMap.get(key));
+			System.out.println(studentMap.get(id));
+			System.out.println(studentMap.get(id).getStudnetName());
 		}
 	}
 

@@ -39,6 +39,7 @@ public class StudentDTO {
 	}	
 
 	@Override
+	//Object 클래스(최상위 클래스)에서 상속 받음
 	public String toString() {
 		String str = id  + "\t" + studentNumber + "\t" + studnetName + "\t" + studentMajor + "\t" + studentMoblie;
 //		String str = studentNumber + "\t" + studnetName + "\t" + studentMajor + "\t" + studentMoblie;
