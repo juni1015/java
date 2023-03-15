@@ -32,7 +32,7 @@ public class MapExample2 {
 //			System.out.println("x");
 //		}
 		
-//		String a = "오예";
+//		String a = "오예";	//문자열 리터널로 값을 집어넣으면 기존에 만들어놨던 리터널 값이 같으면 만들어놨던 리터널 값을 참조하여 같은 주소값이 들어감
 //		String b = "오예";
 //		
 //		if(a == b) {
