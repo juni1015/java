@@ -16,6 +16,17 @@ public class StudentMap {
 		studentDTO1.setStudentMajor("컴퓨터공학");
 		studentDTO1.setStudentMoblie("010-1111-1111");
 		
+		StudentDTO studentDTO1_1 = new StudentDTO();
+		studentDTO1_1.setId(1L);
+		studentDTO1_1.setStudentNumber("1111");
+		studentDTO1_1.setStudnetName("김자바");
+		studentDTO1_1.setStudentMajor("컴퓨터공학");
+		studentDTO1_1.setStudentMoblie("010-1111-1111");
+		
+		//객체에 있는 값 비교
+		System.out.println(studentDTO1.equals(studentDTO1_1));
+		System.out.println(studentDTO1.getId().equals(studentDTO1_1.getId()));
+		
 		StudentDTO studentDTO2 = new StudentDTO();
 		studentDTO2.setId(2L);
 		studentDTO2.setStudentNumber("2222");

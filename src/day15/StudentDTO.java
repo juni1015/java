@@ -1,5 +1,7 @@
 package day15;
 
+import java.util.Objects;
+
 public class StudentDTO {
 	private Long id;
 	private String studentNumber;
@@ -45,4 +47,26 @@ public class StudentDTO {
 //		String str = studentNumber + "\t" + studnetName + "\t" + studentMajor + "\t" + studentMoblie;
 		return str;
 	}
+	
+	// 두 객체의 필드값이 모두 일치하는지 판단하려면 hashCode(), equals() 메소드를 재정의
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, studentMajor, studentMoblie, studentNumber, studnetName);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentDTO other = (StudentDTO) obj;
+		return Objects.equals(id, other.id) && Objects.equals(studentMajor, other.studentMajor)
+				&& Objects.equals(studentMoblie, other.studentMoblie)
+				&& Objects.equals(studentNumber, other.studentNumber) && Objects.equals(studnetName, other.studnetName);
+	}
+	
+	
 }
