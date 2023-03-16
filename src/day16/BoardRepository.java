@@ -1,6 +1,7 @@
 package day16;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,8 +52,11 @@ public class BoardRepository {
 	
 	public List<BoardDTO> findWriter(String writer) {
 		List<BoardDTO> writerList = new ArrayList<>();
+		//정렬
+		List<String> keySet = new ArrayList<>(map.keySet());	//list 안에 map의 key의 값들만 넣음
+		Collections.sort(keySet);	//map의 key의 값들만 넣은 list를 정렬함
 		
-		for(String bnoFind : map.keySet()) {
+		for(String bnoFind : keySet) {	//정렬된 list(keySet)에 들어있는 key의 값을 bnoFind에 넣어 순차적으로 돌림
 			if(map.get(bnoFind).getWriter().equals(writer)) {
 				//아래 방법으로 객체 생성해서 하나하나 넣어줄 필요없음
 //				BoardDTO boardDTO = new BoardDTO();
