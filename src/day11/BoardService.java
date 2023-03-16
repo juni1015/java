@@ -46,6 +46,7 @@ public class BoardService {
 		}
 	}
 	
+	//아래의 경우 객체를 새로 생성하기 때문에 수정 후 게시글등록시 번호가 잘못됨(100 수정 후 게시글 등록시 101이 아닌 102가 등록됨)
 	public void update() {
 		System.out.print("수정할 글번호> ");
 		String bno = sc.next(); sc.nextLine();
@@ -54,13 +55,35 @@ public class BoardService {
 		if(b == null) {
 			System.out.println("조회할 수 없는 글번호입니다.");
 		} else {
-			BoardDTO boardDTO = new BoardDTO();
+			BoardDTO boardDTO = new BoardDTO();	//Bno뜨지 않게 하려면 bno를 자동으로 작성하는 생성자말고 bno자동으로 작성되지 않은 생성자 추가해서 그 생성자 사용해야 함
 			System.out.print("수정할 제목> ");
 			boardDTO.setTitle(sc.nextLine());
 			System.out.print("수정할 작성자> ");
 			boardDTO.setWriter(sc.next());
 			sc.nextLine();
 			if(br.update(boardDTO, bno)) {
+				System.out.println("업데이트 성공");
+			} else {
+				System.out.println("업데이트 실패");
+			}
+		}
+	}
+	
+	public void updateNew() {
+		System.out.print("수정할 글번호> ");
+		String bno = sc.next(); sc.nextLine();
+		BoardDTO b = br.findById(bno);	
+		//수정할 때 글번호를 체크해야하는 이유 : 수정할 제목, 작성자를 다 받고나서 업데이트를 해야 글 번호가 있는지 없는지 확인되기 때문
+		if(b == null) {
+			System.out.println("조회할 수 없는 글번호입니다.");
+		} else {
+//			BoardDTO boardDTO = new BoardDTO();
+			System.out.print("수정할 제목> ");
+			String updateTitle = sc.nextLine();
+			System.out.print("수정할 작성자> ");
+			String updateWriter = sc.nextLine();
+			sc.nextLine();
+			if(br.updateNew(bno, updateTitle, updateWriter)) {
 				System.out.println("업데이트 성공");
 			} else {
 				System.out.println("업데이트 실패");

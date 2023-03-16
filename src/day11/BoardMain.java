@@ -23,7 +23,7 @@ public class BoardMain {
 			} else if(menu == 3) {
 				service.findById();
 			} else if(menu == 4) {
-				service.update();
+				service.updateNew();
 			} else if(menu == 5) {
 				service.delete();
 			} else if(menu == 0) {

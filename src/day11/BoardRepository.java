@@ -37,6 +37,18 @@ public class BoardRepository {
 		return false;
 	}
 	
+
+	public boolean updateNew(String bno, String updateTitle, String updateWriter) {
+		for(BoardDTO b : list) {
+			if(b.getBno().equals(bno)) {
+				b.setTitle(updateTitle);
+				b.setWriter(updateWriter);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean delete(String bno) {
 		for(BoardDTO b : list) {
 			if(b.getBno().equals(bno)) {

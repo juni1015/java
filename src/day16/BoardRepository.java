@@ -12,8 +12,12 @@ public class BoardRepository {
 	
 	public boolean save(String bno, BoardDTO boardDTO) {
 		map.put(bno, boardDTO);
+//		System.out.println(map.size());		//실행부터 지금까지 map에 저장된 값의 개수가 나옴
+//		System.out.println(map.get(bno));	//현재 저장하는 bno의 객체 주소값이 나옴
+		if(map.get(bno) == null) {			//현재 저장하는 값이 제대로 들어가는지 확인하려면 size로 확인시 이전에 작성된 값의 개수도 확인되기 때문에 제대로 확인할 수 없음
+			return false;
+		}
 		return true;
-		//리스트 안의 add메소드를 통해 boardDTO 값이 넣어지면 true, 안 넣어지면 false을 boolean으로 리턴해줌
 	}
 	
 	public Map<String, BoardDTO> findAll() {
@@ -21,7 +25,7 @@ public class BoardRepository {
 	}
 	
 	public Map<String, BoardDTO> findById(String bno) {
-		for(String bnoFind : map.keySet()) {
+		for(String bnoFind : map.keySet()) {	//map.keySet은 키만 들어있기 때문에 키의 타입인 String으로 반복변수 bnoFind를 선언해야 함
 			if(bnoFind.equals(bno)) {
 				return map;
 			}			
@@ -34,6 +38,17 @@ public class BoardRepository {
 			if(bnoFind.equals(bno)) {
 				map.get(bno).setTitle(boardDTO.getTitle());
 				map.get(bno).setWriter(boardDTO.getWriter());
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean updateNew(String bno, String updateTitle, String updateWriter) {
+		for(String bnoFind : map.keySet()) {
+			if(bnoFind.equals(bno)) {		//if(bno.equals(map.get(bnoFind).getBno())) { 으로도 사용가능
+				map.get(bno).setTitle(updateTitle);
+				map.get(bno).setWriter(updateWriter);
 				return true;
 			}
 		}
@@ -65,7 +80,7 @@ public class BoardRepository {
 //				boardDTO.setWriter(map.get(bnoFind).getWriter());
 //				boardDTO.setPostDate(map.get(bnoFind).getPostDate());
 				
-				writerList.add(map.get(bnoFind));	
+				writerList.add(map.get(bnoFind));
 				//map에 있는 bnoFind의 키에 해당하는 객체가 list에 저장됨 
 			}
 		}

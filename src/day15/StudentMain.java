@@ -3,7 +3,7 @@ package day15;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentMap {
+public class StudentMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,6 +45,7 @@ public class StudentMap {
 //		studentMap.put(studentDTO2.getId(), studentDTO2.toString());
 //		studentMap.put(studentDTO3.getId(), studentDTO3.toString());
 		
+		//DTO클래스에 toString 오버라이딩하여 studentDTO1.toString() 하지 않아도 toString이 적용됨
 		studentMap.put(studentDTO1.getId(), studentDTO1);
 		studentMap.put(studentDTO2.getId(), studentDTO2);
 		studentMap.put(studentDTO3.getId(), studentDTO3);
