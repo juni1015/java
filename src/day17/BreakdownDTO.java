@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BreakdownDTO {
+	private static int number = 100;
 	private final static DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yy/MM/dd hh:mm:ss");
 	
+	private String line;
 	private String account;
 	private String division;
 	private long dealMoney;
@@ -13,9 +15,13 @@ public class BreakdownDTO {
 	private String dealDate;
 	
 	public BreakdownDTO() {
+		this.line = account + number++;
 		this.dealDate = DTF.format(LocalDateTime.now());
 	}
-	
+
+	public String getLine() {
+		return line;
+	}
 	public String getAccount() {
 		return account;
 	}

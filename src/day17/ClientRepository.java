@@ -15,7 +15,8 @@ public class ClientRepository {
 	
 //	List<ClientDTO> cList = new ArrayList<>();
 	Map<String, ClientDTO> cMap = new HashMap<>();
-	List<BreakdownDTO> bList = new ArrayList<>();
+//	List<BreakdownDTO> bList = new ArrayList<>();
+	Map<String, BreakdownDTO> bMap = new HashMap<>();
 	
 	public boolean save(ClientDTO clientDTO) {
 //		return cList.add(clientDTO);
@@ -49,13 +50,17 @@ public class ClientRepository {
 	}
 	
 	public List<BreakdownDTO> breakList(String account) {
-		List<BreakdownDTO> list = new ArrayList<>();
-		for(BreakdownDTO b : bList) {
-			if(b.getAccount().equals(account)) {
-				list.add(b);
+		List<BreakdownDTO> bList = new ArrayList<>();
+		//검색 정렬
+		List<String> keySet = new ArrayList<>(bMap.keySet());
+		Collections.sort(keySet);
+		
+		for(String key : keySet) {
+			if(account.equals(bMap.get(key).getAccount())) {
+				bList.add(bMap.get(key));
 			}
 		}
-		return list;
+		return bList;
 	}
 	
 	public String getAccount(String id, String password) {
@@ -77,7 +82,7 @@ public class ClientRepository {
 				breakdownDTO.setDivision("입금");
 				breakdownDTO.setDealMoney(money);
 				breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
-				bList.add(breakdownDTO);
+				bMap.put(breakdownDTO.getLine(), breakdownDTO);
 				return true;
 			}
 		}
@@ -103,7 +108,7 @@ public class ClientRepository {
 					breakdownDTO.setDivision("출금");
 					breakdownDTO.setDealMoney(money);
 					breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
-					bList.add(breakdownDTO);
+					bMap.put(breakdownDTO.getLine(), breakdownDTO);
 					return 1;
 				} else {
 					return 0;
