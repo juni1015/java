@@ -21,11 +21,17 @@ public class ClientRepository {
 	
 	public boolean save(ClientDTO clientDTO) {
 //		return cList.add(clientDTO);
-		cMap.put(clientDTO.getAccount(), clientDTO);
-		if(cMap.get(clientDTO.getAccount()) == null) {
+//		cMap.put(clientDTO.getAccount(), clientDTO);
+//		if(cMap.get(clientDTO.getAccount()) == null) {
+//			return false;
+//		}
+//		return true;
+		
+		//위의 코드을 아래와 같이 줄일 수 있음 {}가 없는 이유는 한줄로 입력이 가능하기 때문으로 두줄 이상의 경우에는 꼭 {}를 작성해야 함
+		if(cMap.put(clientDTO.getAccount(), clientDTO) == null)
+			return true;
+		else
 			return false;
-		}
-		return true;
 	}
 	
 	public boolean loginChenk(String id, String password) {
@@ -50,6 +56,7 @@ public class ClientRepository {
 		return null;
 	}
 	
+	//list로 리턴하는 거래내역 메소드
 //	public List<BreakdownDTO> breakList(String account) {
 //		List<BreakdownDTO> bList = new ArrayList<>();
 //		//검색 정렬
@@ -64,6 +71,7 @@ public class ClientRepository {
 //		return bList;
 //	}
 	
+	//위의 주석과 동일한 기능의 Map으로 리턴하는 거래내역 메소드 
 	public Map<String, BreakdownDTO> breakList(String account) {		
 		Map<String, BreakdownDTO> map = new HashMap<>();
 		for(String key : bMap.keySet()) {

@@ -9,9 +9,9 @@ import java.util.Scanner;
 public class ClientService {
 	//싱글톤패턴
 	private static ClientService service = new ClientService();	
-	private ClientService() {}	//생성자
+	private ClientService() {}	//생성자를 paivate으로 만든 이유 : 클라이언트라는 클래스를 기본 생성자로 다른 클래스에서 객체 생성할 수 없게 막아둠
 	public static ClientService getIstence() {
-		return service;
+		return service;		//객체를 리턴
 	}
 	
 	private Scanner sc = new Scanner(System.in);
