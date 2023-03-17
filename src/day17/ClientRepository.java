@@ -3,6 +3,7 @@ package day17;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -148,7 +149,7 @@ public class ClientRepository {
 		return false;
 	}
 	
-	public List<ClientDTO> select(String selectId) {
+	public List<ClientDTO> selectId(String selectId) {
 		List<ClientDTO> selectList = new ArrayList<>();
 		//검색 정렬
 		List<String> keySet = new ArrayList<>(cMap.keySet());
@@ -160,5 +161,19 @@ public class ClientRepository {
 			}
 		}
 		return selectList;
+	}
+	
+	public List<ClientDTO> selectName(String selectName) {
+		List<ClientDTO> selectList = new ArrayList<>();
+		//client list 정렬
+		List<String> keySet = new ArrayList<>(cMap.keySet());
+		Collections.sort(keySet);
+		
+		for(String key : keySet) {
+			if(selectName.equals(cMap.get(key).getName())) {
+				selectList.add(cMap.get(key));
+			}
+		}
+		return selectList;		
 	}
 }

@@ -211,18 +211,39 @@ public class ClientService {
 	}
 	
 	public void select() {
-		System.out.print("검색할 아이디> ");
-		String selectId = sc.next();
-		sc.nextLine();
-		List<ClientDTO> selectList = repository.select(selectId);
-		if(selectList.size() == 0) {
-			System.out.println("없는 아이디입니다.");
-		} else {
-			System.out.println("계좌번호\t\t아이디\t패스워드\t예금주\t잔액\t가입일");
-			System.out.println("------------------------------------------------------------------");
-			for(ClientDTO c : selectList) {
-				System.out.println(c.toString());
+		System.out.println("1.아이디검색 2.예금주검색");
+		System.out.print("메뉴선택> ");
+		int menu = sc.nextInt();
+		if(menu == 1) {
+			System.out.print("검색할 아이디> ");
+			String selectId = sc.next();
+			sc.nextLine();
+			List<ClientDTO> idList = repository.selectId(selectId);
+			if(idList.size() == 0) {
+				System.out.println("없는 아이디입니다.");
+			} else {
+				System.out.println("계좌번호\t\t아이디\t패스워드\t예금주\t잔액\t가입일");
+				System.out.println("------------------------------------------------------------------");
+				for(ClientDTO c : idList) {
+					System.out.println(c.toString());
+				}
 			}
+		} else if(menu == 2) {
+			System.out.print("검색할 예금주> ");
+			String selectName = sc.next();
+			sc.nextLine();
+			List<ClientDTO> nameList = repository.selectName(selectName);
+			if(nameList.size() == 0) {
+				System.out.println("없는 아이디입니다.");
+			} else {
+				System.out.println("계좌번호\t\t아이디\t패스워드\t예금주\t잔액\t가입일");
+				System.out.println("------------------------------------------------------------------");
+				for(ClientDTO c : nameList) {
+					System.out.println(c.toString());
+				}
+			}
+		} else {
+			System.out.println("다시입력");
 		}
 	}
 
