@@ -65,6 +65,31 @@ public class ClientService {
 		}
 	}
 	
+//	public void findById() {
+//		ClientDTO clientDTO = repository.findById(loginId, loginPassword);
+//		if(clientDTO == null) {
+//			System.out.println("로그인 오류");
+//		} else {
+//			System.out.println("계좌번호\t\t아이디\t패스워드\t예금주\t잔액\t가입일");
+//			System.out.println("------------------------------------------------------------------");
+//			System.out.println(clientDTO.toString());
+//			System.out.println("------------------------------------------------------------------");
+//			List<BreakdownDTO> bList  = repository.breakList(clientDTO.getAccount());
+//			if(bList.size() == 0) {
+//				System.out.println("입출금 내역이 없습니다");
+//			} else {				
+//				System.out.println("▼입출금내역▼");
+//				System.out.println("------------------------------------------------------------------");
+//				System.out.println("계좌번호\t\t구분\t거래금액\t거래후 잔액\t거래일");
+//				for(BreakdownDTO b : bList) {
+//					System.out.println(b.toString());
+//				}
+//				System.out.println("------------------------------------------------------------------");
+//			}
+//		}
+//		
+//	}
+	
 	public void findById() {
 		ClientDTO clientDTO = repository.findById(loginId, loginPassword);
 		if(clientDTO == null) {
@@ -74,15 +99,15 @@ public class ClientService {
 			System.out.println("------------------------------------------------------------------");
 			System.out.println(clientDTO.toString());
 			System.out.println("------------------------------------------------------------------");
-			List<BreakdownDTO> bList  = repository.breakList(clientDTO.getAccount());
-			if(bList.size() == 0) {
+			Map<String, BreakdownDTO> map  = repository.breakList(clientDTO.getAccount());
+			if(map.size() == 0) {
 				System.out.println("입출금 내역이 없습니다");
 			} else {				
 				System.out.println("▼입출금내역▼");
 				System.out.println("------------------------------------------------------------------");
 				System.out.println("계좌번호\t\t구분\t거래금액\t거래후 잔액\t거래일");
-				for(BreakdownDTO b : bList) {
-					System.out.println(b.toString());
+				for(String key : map.keySet()) {
+					System.out.println(map.get(key).toString());
 				}
 				System.out.println("------------------------------------------------------------------");
 			}

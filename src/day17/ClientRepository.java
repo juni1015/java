@@ -49,18 +49,28 @@ public class ClientRepository {
 		return null;
 	}
 	
-	public List<BreakdownDTO> breakList(String account) {
-		List<BreakdownDTO> bList = new ArrayList<>();
-		//검색 정렬
-		List<String> keySet = new ArrayList<>(bMap.keySet());
-		Collections.sort(keySet);
-		
-		for(String key : keySet) {
+//	public List<BreakdownDTO> breakList(String account) {
+//		List<BreakdownDTO> bList = new ArrayList<>();
+//		//검색 정렬
+//		List<String> keySet = new ArrayList<>(bMap.keySet());
+//		Collections.sort(keySet);
+//		
+//		for(String key : keySet) {
+//			if(account.equals(bMap.get(key).getAccount())) {
+//				bList.add(bMap.get(key));
+//			}
+//		}
+//		return bList;
+//	}
+	
+	public Map<String, BreakdownDTO> breakList(String account) {		
+		Map<String, BreakdownDTO> map = new HashMap<>();
+		for(String key : bMap.keySet()) {
 			if(account.equals(bMap.get(key).getAccount())) {
-				bList.add(bMap.get(key));
+				map.put(key, bMap.get(key));
 			}
 		}
-		return bList;
+		return map;
 	}
 	
 	public String getAccount(String id, String password) {
