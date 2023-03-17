@@ -21,8 +21,15 @@ public class ClientService {
 	
 	public void save() {
 		ClientDTO clientDTO = new ClientDTO();
-		System.out.print("id> ");
-		clientDTO.setId(sc.next());
+		while(true) {
+			System.out.print("id> ");
+			clientDTO.setId(sc.next());
+			if(repository.overrapId(clientDTO.getId())) {
+				System.out.println("중복 아이디가 있습니다. 아이디를 다시 입력");
+				continue;
+			}
+			break;
+		}
 		System.out.print("password> ");
 		clientDTO.setPassword(sc.next());
 		System.out.print("name> ");

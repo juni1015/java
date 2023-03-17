@@ -34,6 +34,15 @@ public class ClientRepository {
 			return false;
 	}
 	
+	public boolean overrapId(String id) {
+		for(String key : cMap.keySet()) {
+			if(id.equals(cMap.get(key).getId())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean loginChenk(String id, String password) {
 		for(String key : cMap.keySet()) {
 			if(id.equals(cMap.get(key).getId()) && password.equals(cMap.get(key).getPassword())) {
