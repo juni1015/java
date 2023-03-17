@@ -43,14 +43,14 @@ public class ClientRepository {
 		return false;
 	}
 	
-	public boolean loginChenk(String id, String password) {
-		for(String key : cMap.keySet()) {
-			if(id.equals(cMap.get(key).getId()) && password.equals(cMap.get(key).getPassword())) {
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean loginChenk(String id, String password) {
+//		for(String key : cMap.keySet()) {
+//			if(id.equals(cMap.get(key).getId()) && password.equals(cMap.get(key).getPassword())) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 	
 	public Map<String, ClientDTO> findAll() {
 		return cMap;
@@ -100,21 +100,67 @@ public class ClientRepository {
 		return null;
 	}
 	
-	public boolean deposit(String account, long money) {
+//	public boolean deposit(String account, long money) {
+//		for(String key : cMap.keySet()) {
+//			if(account.equals(key)) {	
+//				//account.equals(cMap.get(key).getAccount())로 작성해도 되지만 key가 account의 값을 가지고 있기 때문에 key로 작성해도 무관함
+//				cMap.get(key).setBalance(cMap.get(key).getBalance() + money);
+//				BreakdownDTO breakdownDTO = new BreakdownDTO();	//거래내역을 넣을 객체 생성
+//				breakdownDTO.setAccount(account);
+//				breakdownDTO.setDivision("입금");
+//				breakdownDTO.setDealMoney(money);
+//				breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
+//				bMap.put(breakdownDTO.getLine(), breakdownDTO);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	
+//	public int withdraw(String account, long money) {
+//		for(String key : cMap.keySet()) {
+//			if(account.equals(key)) {
+//				if(cMap.get(key).getBalance() >= money) {
+//					cMap.get(key).setBalance(cMap.get(key).getBalance() - money);
+//					BreakdownDTO breakdownDTO = new BreakdownDTO();
+//					breakdownDTO.setAccount(account);
+//					breakdownDTO.setDivision("출금");
+//					breakdownDTO.setDealMoney(money);
+//					breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
+//					bMap.put(breakdownDTO.getLine(), breakdownDTO);
+//					return 1;
+//				} else {
+//					return 0;
+//				}
+//			}
+//		}
+//		return -1;
+//	}
+	
+	public int deal (String account, long money, int menu) {
 		for(String key : cMap.keySet()) {
-			if(account.equals(key)) {	
-				//account.equals(cMap.get(key).getAccount())로 작성해도 되지만 key가 account의 값을 가지고 있기 때문에 key로 작성해도 무관함
-				cMap.get(key).setBalance(cMap.get(key).getBalance() + money);
-				BreakdownDTO breakdownDTO = new BreakdownDTO();	//거래내역을 넣을 객체 생성
+			if(account.equals(key)) {
+				if(cMap.get(key).getBalance() >= money && menu == 2) {
+					cMap.get(key).setBalance(cMap.get(key).getBalance() - money);
+				} else if(menu == 1) {
+					cMap.get(key).setBalance(cMap.get(key).getBalance() + money);
+				} else {
+					return 0;
+				}
+				BreakdownDTO breakdownDTO = new BreakdownDTO();
+				if(menu == 1) {
+					breakdownDTO.setDivision("입금");
+				} else if(menu == 2) {
+					breakdownDTO.setDivision("출금");
+				}
 				breakdownDTO.setAccount(account);
-				breakdownDTO.setDivision("입금");
 				breakdownDTO.setDealMoney(money);
 				breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
 				bMap.put(breakdownDTO.getLine(), breakdownDTO);
-				return true;
+				return 1;
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	public boolean transferChenk(String transferAccount) {
@@ -124,26 +170,6 @@ public class ClientRepository {
 			}
 		}
 		return false;
-	}
-	
-	public int withdraw(String account, long money) {
-		for(String key : cMap.keySet()) {
-			if(account.equals(key)) {
-				if(cMap.get(key).getBalance() >= money) {
-					cMap.get(key).setBalance(cMap.get(key).getBalance() - money);
-					BreakdownDTO breakdownDTO = new BreakdownDTO();
-					breakdownDTO.setAccount(account);
-					breakdownDTO.setDivision("출금");
-					breakdownDTO.setDealMoney(money);
-					breakdownDTO.setTotalMoney(cMap.get(key).getBalance());
-					bMap.put(breakdownDTO.getLine(), breakdownDTO);
-					return 1;
-				} else {
-					return 0;
-				}
-			}
-		}
-		return -1;
 	}
 	
 	public boolean update(String id, String password, String updatePassword) {

@@ -20,7 +20,7 @@ public class ClientService {
 	private String loginPassword = null;
 	
 	public void save() {
-		ClientDTO clientDTO = new ClientDTO();
+		ClientDTO clientDTO = new ClientDTO();	//생성자로 객체 생성하여 생성자의 실행문구에 영향을 받음
 		while(true) {
 			System.out.print("id> ");
 			clientDTO.setId(sc.next());
@@ -47,14 +47,16 @@ public class ClientService {
 		System.out.print("password> ");
 		String password = sc.next();
 		
-		if(repository.loginChenk(id, password)) {
+		ClientDTO clientDTO = repository.findById(id, password);
+		
+		if(clientDTO == null) {
+			System.out.println("로그인 실패");
+			return false;
+		} else {
 			loginId = id;
 			loginPassword = password;
 			System.out.println("로그인 성공");
 			return true;
-		} else {
-			System.out.println("로그인 실패");
-			return false;
 		}
 	}
 	
@@ -98,7 +100,7 @@ public class ClientService {
 //	}
 	
 	public void findById() {
-		ClientDTO clientDTO = repository.findById(loginId, loginPassword);
+		ClientDTO clientDTO = repository.findById(loginId, loginPassword);	//객체를 생성하는 것은 맞으나 new로 생성 것과는 다르게 생성자로 생성되지 않기 때문에 생성자의 실행문구에 영향을 받지 않음
 		if(clientDTO == null) {
 			System.out.println("로그인 오류");
 		} else {
@@ -129,7 +131,8 @@ public class ClientService {
 		} else {
 			System.out.print("입금금액> ");
 			long money = sc.nextLong();
-			if(repository.deposit(account, money)) {
+			int ok = repository.deal(account, money, 1);
+			if(ok == 1) {
 				System.out.println("입금완료");
 			} else {
 				System.out.println("입금실패");
@@ -145,7 +148,7 @@ public class ClientService {
 		} else {
 			System.out.print("출금금액> ");
 			long money = sc.nextLong();
-			int ok = repository.withdraw(account, money);
+			int ok = repository.deal(account, money, 2);
 			if(ok == 1) {
 				System.out.println("출금완료");
 			} else if(ok == 0) {
@@ -167,13 +170,14 @@ public class ClientService {
 		if(repository.transferChenk(transferAccount)) {
 			System.out.print("이체할 금액> ");		//계좌이체 있는지 먼저 확인하기 위해 위치 if문 아래로 변경함
 			long transferMoney = sc.nextLong();
-			int ok = repository.withdraw(wAccount, transferMoney);
-			if(ok == 1) {
+			int withdrawOk = repository.deal(wAccount, transferMoney, 2);
+			if(withdrawOk == 1) {
 				System.out.println("출금완료");
-				if(repository.deposit(transferAccount, transferMoney)) {
+				int depositOk = repository.deal(transferAccount, transferMoney, 1);
+				if(depositOk == 1) {
 					System.out.println("입금완료");
 				}
-			} else if(ok == 0) {
+			} else if(withdrawOk == 0) {
 				System.out.println("잔액부족");
 			} else {
 				System.out.println("계좌오류");
