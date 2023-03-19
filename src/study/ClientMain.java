@@ -50,6 +50,7 @@ public class ClientMain {
 		 * 0. 종료됨
 		 */
 		Scanner sc = new Scanner(System.in);
+		
 		boolean loginOk = false;
 		
 		while(true) {

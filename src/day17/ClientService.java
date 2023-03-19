@@ -9,13 +9,14 @@ import java.util.Scanner;
 public class ClientService {
 	//싱글톤패턴
 	private static ClientService service = new ClientService();	
-	private ClientService() {}	//생성자를 paivate으로 만든 이유 : 클라이언트라는 클래스를 기본 생성자로 다른 클래스에서 객체 생성할 수 없게 막아둠
+	private ClientService() {}	////기본 생성자로 다른 클래스에서 객체 생성할 수 없게 막아두기 위해 생성자를 private으로 막음
 	public static ClientService getIstence() {
 		return service;		//객체를 리턴
 	}
 	
 	private Scanner sc = new Scanner(System.in);
 	private ClientRepository repository = ClientRepository.getInstence();
+	Util util = new Util();
 	private String loginId = null;	//세션역할
 	private String loginPassword = null;
 	
@@ -24,7 +25,7 @@ public class ClientService {
 		while(true) {
 			System.out.print("id> ");
 			clientDTO.setId(sc.next());
-			if(repository.overrapId(clientDTO.getId())) {
+			if(util.overrapId(clientDTO.getId())) {
 				System.out.println("중복 아이디가 있습니다. 아이디를 다시 입력");
 				continue;
 			}
@@ -229,7 +230,7 @@ public class ClientService {
 			System.out.print("검색할 아이디> ");
 			String selectId = sc.next();
 			sc.nextLine();
-			List<ClientDTO> idList = repository.selectId(selectId);
+			List<ClientDTO> idList = repository.select(selectId, menu);
 			if(idList.size() == 0) {
 				System.out.println("없는 아이디입니다.");
 			} else {
@@ -243,7 +244,7 @@ public class ClientService {
 			System.out.print("검색할 예금주> ");
 			String selectName = sc.next();
 			sc.nextLine();
-			List<ClientDTO> nameList = repository.selectName(selectName);
+			List<ClientDTO> nameList = repository.select(selectName, menu);
 			if(nameList.size() == 0) {
 				System.out.println("없는 아이디입니다.");
 			} else {

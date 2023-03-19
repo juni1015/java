@@ -34,14 +34,14 @@ public class ClientRepository {
 			return false;
 	}
 	
-	public boolean overrapId(String id) {
-		for(String key : cMap.keySet()) {
-			if(id.equals(cMap.get(key).getId())) {
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean overrapId(String id) {
+//		for(String key : cMap.keySet()) {
+//			if(id.equals(cMap.get(key).getId())) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 	
 //	public boolean loginChenk(String id, String password) {
 //		for(String key : cMap.keySet()) {
@@ -192,31 +192,47 @@ public class ClientRepository {
 		return false;
 	}
 	
-	public List<ClientDTO> selectId(String selectId) {
+//	public List<ClientDTO> selectId(String selectId) {
+//		List<ClientDTO> selectList = new ArrayList<>();
+//		//검색 정렬
+//		List<String> keySet = new ArrayList<>(cMap.keySet());
+//		Collections.sort(keySet);
+//		
+//		for(String key : keySet) {
+//			if(selectId.equals(cMap.get(key).getId())) {
+//				selectList.add(cMap.get(key));
+//			}
+//		}
+//		return selectList;
+//	}
+//	
+//	public List<ClientDTO> selectName(String selectName) {
+//		List<ClientDTO> selectList = new ArrayList<>();
+//		//client list 정렬
+//		List<String> keySet = new ArrayList<>(cMap.keySet());
+//		Collections.sort(keySet);
+//		
+//		for(String key : keySet) {
+//			if(selectName.equals(cMap.get(key).getName())) {
+//				selectList.add(cMap.get(key));
+//			}
+//		}
+//		return selectList;		
+//	}
+	
+	public List<ClientDTO> select(String select,int menu) {
 		List<ClientDTO> selectList = new ArrayList<>();
 		//검색 정렬
 		List<String> keySet = new ArrayList<>(cMap.keySet());
 		Collections.sort(keySet);
 		
 		for(String key : keySet) {
-			if(selectId.equals(cMap.get(key).getId())) {
+			if(select.equals(cMap.get(key).getId()) && menu == 1) {
+				selectList.add(cMap.get(key));
+			} else if(select.equals(cMap.get(key).getName()) && menu == 2) {
 				selectList.add(cMap.get(key));
 			}
 		}
 		return selectList;
-	}
-	
-	public List<ClientDTO> selectName(String selectName) {
-		List<ClientDTO> selectList = new ArrayList<>();
-		//client list 정렬
-		List<String> keySet = new ArrayList<>(cMap.keySet());
-		Collections.sort(keySet);
-		
-		for(String key : keySet) {
-			if(selectName.equals(cMap.get(key).getName())) {
-				selectList.add(cMap.get(key));
-			}
-		}
-		return selectList;		
 	}
 }
