@@ -16,6 +16,10 @@ public class InheritanceMain {
 		System.out.println(c1.name);
 		c1.hello();
 		
+//		ChildClass c2 = new ParentClass();	//부모가 더 크기 때문에 큰 것을 작을 걸로 넣으려고 하는 것이라 사용 불가
+		ChildClass c3 = (ChildClass) new ParentClass();	//위의 코드처럼 사용하려면 강제형변환과 같이 강제로 변환해서 사용해야 함
+		ParentClass p2 = new ChildClass();
+		
 	}
 
 }
