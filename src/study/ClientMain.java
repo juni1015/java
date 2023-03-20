@@ -1,5 +1,6 @@
 package study;
 
+import java.security.Provider.Service;
 import java.util.Scanner;
 
 public class ClientMain {
@@ -50,6 +51,7 @@ public class ClientMain {
 		 * 0. 종료됨
 		 */
 		Scanner sc = new Scanner(System.in);
+		ClientService service = ClientService.getInstance();
 		
 		boolean loginOk = false;
 		
@@ -67,7 +69,7 @@ public class ClientMain {
 				if(loginOk) {
 					
 				} else {
-					
+					service.save();
 				}
 			} else if(menu == 2) {
 				if(loginOk) {

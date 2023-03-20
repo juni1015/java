@@ -22,5 +22,9 @@ public class ClientRepository {
 		}
 		return false;
 	}
+	
+	public List<ClientDTO> findAll() {
+		return cList;
+	}
 
 }
