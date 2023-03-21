@@ -9,6 +9,7 @@ public class ShoppingmallMain {
 		Util util = new Util();
 		MemberService memberService = MemberService.getInstence();
 		ManagerService managerService = ManagerService.getInstence();
+		MenuManagement menuManagement = MenuManagement.getInstence();
 		boolean loginOk = false;
 		boolean menuOk = false;	//페이지분류완료 확인 
 		int menu = -1;
@@ -69,7 +70,10 @@ public class ShoppingmallMain {
 				} else if(menu == 3) {
 					if(loginOk) {
 						if(memberOk == 0) {	//로그인된 관리자 상품관리
-							
+							int managementOk = 1;
+							while(managementOk != 0) {
+								managementOk = menuManagement.productManagement();
+							}
 						} else {	//로그인된 회원 상품구매
 							
 						}

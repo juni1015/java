@@ -21,9 +21,10 @@ public class Util {
 	}
 	
 	//숫자만 입력 체크
-	public int numberCheck() {
-		if(sc.hasNextInt()) {
-			return sc.nextInt();
+	public long numberCheck() {
+		if(sc.hasNextLong()) {
+			long number = sc.nextLong();
+			return number;
 		} else {
 			sc.nextLine();
 			return -1;

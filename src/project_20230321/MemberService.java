@@ -94,7 +94,7 @@ public class MemberService implements UserInt {
 		
 		if(pwOk.equals(loginPw)) {
 			UserDTO userDTO = repository.findById(loginId, loginPw);
-			System.out.print("패스워드*> ");
+			System.out.print("패스워드> ");
 			String pw = util.skip(sc.nextLine(), userDTO.getPw()); 
 			System.out.print("이름> ");
 			String name = util.skip(sc.nextLine(), userDTO.getName());
