@@ -21,5 +21,56 @@ public class ProductRepository {
 		}
 		return false;
 	}
+	
+	public ProductDTO findByProduct(String pno) {
+		for(String key : pMap.keySet()) {
+			if(pno.equals(pMap.get(key).getPno())) {
+				return pMap.get(key);
+			}
+		}
+		return null;
+	}
+	
+	public boolean inputStock(String pno, long ea) {
+		for(String key : pMap.keySet()) {
+			if(pno.equals(pMap.get(key).getPno())) {
+				pMap.get(key).setStock(pMap.get(key).getStock() + ea);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Map<String, ProductDTO> findAll() {
+		if(pMap != null) {
+			return pMap;
+		}
+		return null;
+	}
+	
+	public boolean update(String updatePno, String pname, String category, long cost, long ea) {
+		for(String key : pMap.keySet()) {
+			if(updatePno.equals(pMap.get(key).getPno())) {
+				pMap.get(key).setPname(pname);
+				pMap.get(key).setCategory(category);
+				pMap.get(key).setCost(cost);
+				pMap.get(key).setStock(ea);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean delete(String deletePno) {
+		for(String key : pMap.keySet()) {
+			if(deletePno.equals(pMap.get(key).getPno())) {
+				pMap.remove(key);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 
 }

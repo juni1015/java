@@ -22,20 +22,36 @@ public class ManagerService implements UserInt {
 		System.out.print("관리자생성 패스워드> ");
 		if(repository.managerPw(sc.nextLine())) {
 			UserDTO userDTO = new UserDTO();
-			userDTO.setManagerOk(0);
-			while(true) {
-				System.out.print("아이디*> ");
-				userDTO.setId(sc.nextLine());
-				if(util.overrapCheck(repository.findAll(), userDTO.getId(), 0)) {
+			userDTO.setManagerOk(0);	
+			String inputStr = null;		
+			while(true) {			
+				while(true) {
+					inputStr = util.stringCheck("아이디");
+					if(inputStr != null) {
+						break;
+					}
+				}
+				userDTO.setId(inputStr);
+				if(util.overrapCheck(repository.findAll(), userDTO.getId(), 1)) {
 					System.out.println("중복된 아이디가 있습니다. 다시입력");
 				} else {
 					break;
 				}
 			}
-			System.out.print("패스워드*> ");
-			userDTO.setPw(sc.nextLine());
-			System.out.print("이름*> ");
-			userDTO.setName(sc.nextLine());
+			while(true) {
+				inputStr = util.stringCheck("패스워드");
+				if(inputStr != null) {
+					break;
+				}
+			}
+			userDTO.setPw(inputStr);
+			while(true) {
+				inputStr = util.stringCheck("이름");
+				if(inputStr != null) {
+					break;
+				}
+			}
+			userDTO.setName(inputStr);
 			System.out.print("휴대폰번호> ");
 			userDTO.setPhoneNumber(util.skip(sc.nextLine(), userDTO.getPhoneNumber()));
 			System.out.print("주소> ");
@@ -78,7 +94,7 @@ public class ManagerService implements UserInt {
 		if(userDTO == null) {
 			System.out.println("세션오류");
 		} else {
-			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t\t주소\t\t보유금액\t생성날짜");
+			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
 			System.out.println("---------------------------------------------------------------------------");
 			System.out.println(userDTO.toString());
 		}	
@@ -87,7 +103,7 @@ public class ManagerService implements UserInt {
 	@Override
 	public void findAll() {
 		List<UserDTO> uList = repository.findAll();
-		System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t\t주소\t\t보유금액\t생성날짜");
+		System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
 		System.out.println("---------------------------------------------------------------------------");
 		for(UserDTO u : uList) {
 			System.out.println(u.toString());
@@ -135,7 +151,7 @@ public class ManagerService implements UserInt {
 		
 		if(pwOk.equals(loginPw)) {
 			while(true) {
-				System.out.print("정말 탈퇴하시겠습니까? 1.Y 2.N> ");
+				System.out.println("정말 탈퇴하시겠습니까? 1.Y 2.N> ");
 				int menu = util.menu();
 				
 				if(menu == 1) {

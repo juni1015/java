@@ -11,12 +11,14 @@ public class ProductDTO {
 	private String pname;
 	private String category;	//상품 분류
 	private long cost;	//상품 금액
-	private long ea;	//재고
+	private long stock;	//재고
 	private String productDate;
-	public void ProductDTO() {
+	
+	public ProductDTO() {
 		this.pno = "P" + number++;
 		this.productDate = DTF.format(LocalDateTime.now());
 	}
+	
 	public String getPno() {
 		return pno;
 	}
@@ -33,22 +35,25 @@ public class ProductDTO {
 		this.category = category;
 	}
 	public long getCost() {
-		return cost; 
+		return cost;
 	}
 	public void setCost(long cost) {
 		this.cost = cost;
 	}
-	public long getEa() {
-		return ea;
+	public long getStock() {
+		return stock;
 	}
-	public void setEa(long ea) {
-		this.ea = ea;
+	public void setStock(long stock) {
+		this.stock = stock;
 	}
 	public String getProductDate() {
 		return productDate;
 	}
-	public void setProductDate(String productDate) {
-		this.productDate = productDate;
+
+	@Override
+	public String toString() {
+		String str = pno + "\t" + pname + "\t" + category + "\t" + cost + "\t" + stock + "\t" + productDate;
+		return str;
 	}
 	
 

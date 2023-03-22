@@ -12,15 +12,12 @@ public class OrderDTO {
 	private String name;	//구매자 이름
 	private String pno;
 	private String pname;	//상품 이름
-	private String color;
-	private long cost;	//상품 금액
+	private String category;//상품 분류
+	private long cost;		//상품 금액
 	private int ea;
 	private String orderDate;
 	
-	public void OrderDTO() {
-		
-	}
-	public void OrderDTO(String id) {
+	public OrderDTO(String id) {
 		this.ono = "O" + id + number++;
 		this.orderDate = DTF.format(LocalDateTime.now());
 	}
@@ -52,11 +49,11 @@ public class OrderDTO {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public String getColor() {
-		return color;
+	public String getCategory() {
+		return category;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public long getCost() {
 		return cost;

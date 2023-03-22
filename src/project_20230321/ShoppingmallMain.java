@@ -22,7 +22,7 @@ public class ShoppingmallMain {
 			while(true) {				
 				if(memberOk == 0) {
 					if(loginOk) {
-						System.out.println("1.마이페이지 2.정보수정 3.상품관리 4.고객리스트 5.관리자리스트 6.로그아웃 7.탈퇴 0.종료");
+						System.out.println("1.마이페이지 2.정보수정 3.상품관리 4.판매리스트 5.고객리스트 6.관리자리스트 7.로그아웃 8.탈퇴 0.종료");
 					} else {
 						System.out.println("1.회원가입 2.로그인 3.뒤로가기 0.종료 관");
 					}
@@ -69,44 +69,50 @@ public class ShoppingmallMain {
 					}
 				} else if(menu == 3) {
 					if(loginOk) {
+						int managementOk = 1;
 						if(memberOk == 0) {	//로그인된 관리자 상품관리
-							int managementOk = 1;
 							while(managementOk != 0) {
 								managementOk = menuManagement.productManagement();
 							}
 						} else {	//로그인된 회원 상품구매
-							
+							while(managementOk != 0) {
+								managementOk = menuManagement.productBuy();
+							}
 						}
 					} else {	//로그인 x 뒤로가기
 						menuOk = false;
 						break;
 					}
 				} else if(menu == 4 && loginOk) {
-					if(memberOk == 0) {	//로그인된 관리자 고객리스트
-						memberService.findAll();
+					if(memberOk == 0) {	//로그인된 관리자 판매리스트
+						
 					} else {	//로그인된 회원 장바구니
 						
 					}		
 				} else if(menu == 5 && loginOk) {
-					if(memberOk == 0) {	//로그인된 관리자 관리자리스트
-						managerService.findAll();
+					if(memberOk == 0) {	//로그인된 관리자 고객리스트
+						memberService.findAll();
 					} else {	//로그인된 회원 주문내역
 						
 					}				
 				} else if(menu == 6 && loginOk) {
-					if(memberOk == 0) {	//로그인된 관리자 로그아웃
-						loginOk = managerService.logout();
+					if(memberOk == 0) {	//로그인된 관리자 관리자리스트
+						managerService.findAll();
 					} else {	//로그인된 회원 금액충전
 						memberService.balanceUp();
 					}						
 				} else if(menu == 7 && loginOk) {
-					if(memberOk == 0) {	//로그인된 관리자 탈퇴
-						loginOk = managerService.delete();
+					if(memberOk == 0) {	//로그인된 관리자 로그아웃
+						loginOk = managerService.logout();
 					} else {	//로그인된 회원 로그아웃
 						loginOk = memberService.logout();
 					}	
-				} else if(menu == 8 && loginOk && memberOk == 1) {	//로그인된 회원 탈퇴
-					loginOk = memberService.delete();
+				} else if(menu == 8 && loginOk) {
+					if(memberOk == 0) {	//로그인된 관리자 탈퇴
+						loginOk = managerService.delete();
+					} else {	//로그인된 회원 탈퇴
+						loginOk = memberService.logout();
+					}	
 				} else if(menu == 0) {
 					break;
 				} else {

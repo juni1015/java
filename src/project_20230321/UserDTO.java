@@ -15,7 +15,7 @@ public class UserDTO {
 	private int managerOk;	//관리자 여부
 	private String joinDate;
 	
-	public void MemberDTO() {
+	public UserDTO() {
 		this.joinDate = DTF.format(LocalDateTime.now());
 	}
 	
