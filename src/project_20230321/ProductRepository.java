@@ -1,9 +1,12 @@
 package project_20230321;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import day17.ClientDTO;
 
 public class ProductRepository {
 	private static ProductRepository repository = new ProductRepository();
@@ -71,6 +74,30 @@ public class ProductRepository {
 		return false;
 	}
 	
+	public void stockReduction(String pno, long ea) {
+		for(String key : pMap.keySet()) {
+			if(pno.equals(pMap.get(key).getPno())) {
+				pMap.get(key).setStock(pMap.get(key).getStock() - ea);
+			}
+		}
+	}
+	
+//	public List<ProductDTO> findBuy(String select, int menu) {
+//		List<ClientDTO> selectList = new ArrayList<>();
+//		//검색 정렬
+//		List<String> keySet = new ArrayList<>(pMap.keySet());
+//		Collections.sort(keySet);
+//		
+//		for(String key : keySet) {
+//			if(select.equals(pMap.get(key).getPname()) && menu == 1) {
+//				selec
+////				selectList.add(pMap.get(key));
+//			} else if(select.equals(pMap.get(key).getCategory()) && menu == 2) {
+//				selectList.add(cMap.get(key));
+//			}
+//		}
+//		return selectList;
+//	}
 	
 
 }

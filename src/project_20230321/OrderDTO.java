@@ -17,6 +17,9 @@ public class OrderDTO {
 	private int ea;
 	private String orderDate;
 	
+	public OrderDTO() {
+		
+	}
 	public OrderDTO(String id) {
 		this.ono = "O" + id + number++;
 		this.orderDate = DTF.format(LocalDateTime.now());

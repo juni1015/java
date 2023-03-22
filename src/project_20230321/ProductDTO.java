@@ -55,6 +55,5 @@ public class ProductDTO {
 		String str = pno + "\t" + pname + "\t" + category + "\t" + cost + "\t" + stock + "\t" + productDate;
 		return str;
 	}
-	
 
 }

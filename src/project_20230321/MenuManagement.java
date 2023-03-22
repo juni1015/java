@@ -41,7 +41,7 @@ public class MenuManagement {
 		if(menu == 1) {
 			productBuyService.findAllBuy();
 		} else if(menu == 2) {
-			productService.inputStock();
+//			productBuyService.findBuy();
 		} else if(menu == 0) {
 			return 0;
 		} else {

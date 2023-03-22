@@ -173,8 +173,7 @@ public class ManagerService implements UserInt {
 			System.out.println("패스워드 확인필요");
 		}
 		return true;		
-	}
-	
+	}	
 	
 
 }

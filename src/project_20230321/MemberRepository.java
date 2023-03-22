@@ -74,5 +74,13 @@ public class MemberRepository {
 		}
 		return 0;
 	}
+	
+	public void balanceReduction(String id, String pw, long amount) {
+		for(UserDTO u : uList) {
+			if(id.equals(u.getId()) && pw.equals(u.getPw())) {
+				u.setBalance(u.getBalance() - amount);
+			}
+		}
+	}
 
 }

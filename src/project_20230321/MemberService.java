@@ -180,4 +180,9 @@ public class MemberService implements UserInt {
 		}
 	}
 	
+	public UserDTO loginUser() {
+		UserDTO userDTO = repository.findById(loginId, loginPw);
+		return userDTO;
+	}
+	
 }
