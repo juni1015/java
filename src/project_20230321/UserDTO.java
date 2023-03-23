@@ -61,6 +61,10 @@ public class UserDTO {
 	public void setManagerOk(int managerOk) {
 		this.managerOk = managerOk;
 	}
+
+	public void print() {
+		System.out.printf("%s\t%s\t%s\t%s\t%s\n", id, pw, name, phoneNumber, joinDate);
+	}
 	
 	@Override
 	public String toString() {

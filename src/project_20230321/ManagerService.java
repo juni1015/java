@@ -94,19 +94,19 @@ public class ManagerService implements UserInt {
 		if(userDTO == null) {
 			System.out.println("세션오류");
 		} else {
-			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
+			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t\t생성날짜");
 			System.out.println("---------------------------------------------------------------------------");
-			System.out.println(userDTO.toString());
-		}	
+			userDTO.print();
+		}
 	}
 	
 	@Override
 	public void findAll() {
 		List<UserDTO> uList = repository.findAll();
-		System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
+		System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t\t생성날짜");
 		System.out.println("---------------------------------------------------------------------------");
 		for(UserDTO u : uList) {
-			System.out.println(u.toString());
+			u.print();
 		}
 	}
 	
@@ -187,9 +187,9 @@ public class ManagerService implements UserInt {
 			ok = repository.save(userDTO);
 		}
 		if(ok) {
-			System.out.println("상품 테스트데이터 저장완료");
+			System.out.println("관리자 테스트데이터 저장완료");
 		} else {
-			System.out.println("상품 테스트데이터 저장실패");
+			System.out.println("관리자 테스트데이터 저장실패");
 		}
 	}
 

@@ -1,5 +1,7 @@
 package project_20230321;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -60,7 +62,6 @@ public class ProductService {
 	}
 	
 	public void inputStock() {
-		long numberCheck = 0;
 		String inputStr = null;
 		
 		while(true) {
@@ -104,12 +105,16 @@ public class ProductService {
 	
 	public void findAll() {
 		Map<String, ProductDTO> pMap = repository.findAll();
+		
 		if(pMap == null) {
 			System.out.println("조회할 상품이 없습니다");
 		} else {
+			List<String> keySet = new ArrayList<>(pMap.keySet());
+			Collections.sort(keySet);
+			
 			System.out.println("상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
 			System.out.println("---------------------------------------------------------------------------");
-			for(String key : pMap.keySet()) {
+			for(String key : keySet) {
 				System.out.println(pMap.get(key).toString());
 			}
 		}

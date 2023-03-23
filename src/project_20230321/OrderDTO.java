@@ -94,7 +94,7 @@ public class OrderDTO {
 
 	@Override
 	public String toString() {
-		String str = ono + "\t" + id + "\t" + name + "\t" + pno + "\t" + pname + "\t" + category + "\t" + cost + "\t" + ea + "\t" + amount + "\t" + stock + "\t" + orderDate;
+		String str = ono + "\t" + id + "\t\t" + name + "\t\t" + pno + "\t" + pname + "\t" + category + "\t" + cost + "\t" + ea + "\t" + amount + "\t" + stock + "\t" + orderDate;
 		
 		return str;
 	}

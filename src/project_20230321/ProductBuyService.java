@@ -1,5 +1,7 @@
 package project_20230321;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,9 +29,12 @@ public class ProductBuyService {
 		if(pMap.size() == 0) {
 			System.out.println("조회할 상품이 없습니다");
 		} else {
+			List<String> keySet = new ArrayList<>(pMap.keySet());
+			Collections.sort(keySet);
+			
 			System.out.println("No\t상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
 			System.out.println("---------------------------------------------------------------------------");
-			for(String key : pMap.keySet()) {
+			for(String key : keySet) {
 				System.out.println(i + "\t" + pMap.get(key).toString());
 				i++;
 			}
@@ -60,20 +65,18 @@ public class ProductBuyService {
 			String inputStr = null;
 			while(true) {
 				inputStr = util.stringCheck("구매할 상품명");
-				if(inputStr != null) {
+				List<ProductDTO> selectProduct = productrepository.findBuy(inputStr, menu);
+				if(selectProduct.size() == 0) {
+					System.out.println("없는 상품명입니다.");
+				} else {				
+					int i = 1;
+					System.out.println("No\t상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
+					System.out.println("---------------------------------------------------------------------------");
+					for(ProductDTO p : selectProduct) {
+						System.out.println(i + "\t" + p.toString());
+						i++;
+					}
 					break;
-				}
-			}
-			List<ProductDTO> selectProduct = productrepository.findBuy(inputStr, menu);
-			if(selectProduct.size() == 0) {
-				System.out.println("없는 상품명입니다.");
-			} else {
-				int i = 1;
-				System.out.println("No\t상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
-				System.out.println("---------------------------------------------------------------------------");
-				for(ProductDTO p : selectProduct) {
-					System.out.println(i + "\t" + p.toString());
-					i++;
 				}
 			}
 			while(true) {
@@ -97,20 +100,18 @@ public class ProductBuyService {
 			String inputStr = null;
 			while(true) {
 				inputStr = util.stringCheck("구매할 상품분류");
-				if(inputStr != null) {
+				List<ProductDTO> selectProduct = productrepository.findBuy(inputStr, menu);
+				if(selectProduct.size() == 0) {
+					System.out.println("없는 상품명입니다.");
+				} else {
+					int i = 1;
+					System.out.println("No\t상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
+					System.out.println("---------------------------------------------------------------------------");
+					for(ProductDTO p : selectProduct) {
+						System.out.println(i + "\t" + p.toString());
+						i++;
+					}
 					break;
-				}
-			}
-			List<ProductDTO> selectProduct = productrepository.findBuy(inputStr, menu);
-			if(selectProduct.size() == 0) {
-				System.out.println("없는 상품명입니다.");
-			} else {
-				int i = 1;
-				System.out.println("No\t상품코드\t상품명\t분류\t금액\t재고수량\t생성날짜");
-				System.out.println("---------------------------------------------------------------------------");
-				for(ProductDTO p : selectProduct) {
-					System.out.println(i + "\t" + p.toString());
-					i++;
 				}
 			}
 			while(true) {
@@ -224,7 +225,7 @@ public class ProductBuyService {
 		if(userDTO == null) {
 			System.out.println("로그인 오류");
 		} else {
-			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
+			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t\t주소\t보유금액\t생성날짜");
 			System.out.println("---------------------------------------------------------------------------");
 			System.out.println(userDTO.toString());
 			System.out.println("---------------------------------------------------------------------------");
@@ -233,12 +234,12 @@ public class ProductBuyService {
 				System.out.println("구매내역이 없습니다");
 			} else {				
 				System.out.println("▼구매내역▼");
-				System.out.println("------------------------------------------------------------------");
-				System.out.println("주문번호\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t구매금액\t구매날짜");
+				System.out.println("---------------------------------------------------------------------------------");
+				System.out.println("주문번호\t\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t구매금액\t구매날짜");
 				for(OrderDTO o : oList) {
 					o.print();
 				}
-				System.out.println("------------------------------------------------------------------");
+				System.out.println("---------------------------------------------------------------------------------");
 			}
 		}
 	}
@@ -246,14 +247,14 @@ public class ProductBuyService {
 	public void saleBreakdown() {
 		List<OrderDTO> oList = productBuyRepository.orderAll();
 		if(oList.size() == 0) {
-			System.out.println("구매내역이 없습니다");
+			System.out.println("판매내역이 없습니다");
 		} else {
-			System.out.println("------------------------------------------------------------------");
-			System.out.println("주문번호\t구매회원아이디\t구매회원이름\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t판매금액\t판매후재고\t판매날짜");
+			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+			System.out.println("주문번호\t\t구매회원아이디\t구매회원이름\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t판매금액\t판매후재고\t판매날짜");
 			for(OrderDTO o : oList) {
 				System.out.println(o.toString());
 			}
-			System.out.println("------------------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 		}
 	}
 	
