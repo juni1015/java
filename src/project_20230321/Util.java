@@ -83,7 +83,7 @@ public class Util {
 //		return number;
 //	}
 	
-	//숫자만 입력 체크
+	//문자가 숫자로 입력되었는지 체크
 	public boolean isNumeric(String s) {
         try {
 //          Double.parseDouble(s);

@@ -144,7 +144,7 @@ public class MemberService implements UserInt {
 		
 		if(pwOk.equals(loginPw)) {
 			while(true) {
-				System.out.println("정말 탈퇴하시겠습니까? 1.Y 2.N> ");
+				System.out.println("정말 탈퇴하시겠습니까? 1.Y 2.N ");
 				int menu = util.menu();
 				
 				if(menu == 1) {

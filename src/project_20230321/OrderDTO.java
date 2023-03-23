@@ -14,7 +14,8 @@ public class OrderDTO {
 	private String pname;	//상품 이름
 	private String category;//상품 분류
 	private long cost;		//상품 금액
-	private int ea;
+	private long ea;		//구매한 상품 개수
+	private long amount;	//합계금액
 	private String orderDate;
 	
 	public OrderDTO() {
@@ -64,18 +65,22 @@ public class OrderDTO {
 	public void setCost(long cost) {
 		this.cost = cost;
 	}
-	public int getEa() {
+	public long getEa() {
 		return ea;
 	}
-	public void setEa(int ea) {
+	public void setEa(long ea) {
 		this.ea = ea;
+	}
+	public long getAmount() {
+		return amount;
+	}
+	public void setAmount(long amount) {
+		this.amount = amount;
 	}
 	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
-	}
+	
 	
 	
 

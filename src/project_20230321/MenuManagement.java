@@ -34,14 +34,16 @@ public class MenuManagement {
 	}
 	
 	public int productBuy() {
-
 		System.out.println("1.리스트구매 2.검색구매 0.뒤로가기");
 		int menu = util.menu();
 		
 		if(menu == 1) {
 			productBuyService.findAllBuy();
 		} else if(menu == 2) {
-//			productBuyService.findBuy();
+			int managementOk = 1;
+			while(managementOk != 0) {
+				managementOk = productBuyService.findBuy();
+			}
 		} else if(menu == 0) {
 			return 0;
 		} else {

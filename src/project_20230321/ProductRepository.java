@@ -82,22 +82,21 @@ public class ProductRepository {
 		}
 	}
 	
-//	public List<ProductDTO> findBuy(String select, int menu) {
-//		List<ClientDTO> selectList = new ArrayList<>();
-//		//검색 정렬
-//		List<String> keySet = new ArrayList<>(pMap.keySet());
-//		Collections.sort(keySet);
-//		
-//		for(String key : keySet) {
-//			if(select.equals(pMap.get(key).getPname()) && menu == 1) {
-//				selec
-////				selectList.add(pMap.get(key));
-//			} else if(select.equals(pMap.get(key).getCategory()) && menu == 2) {
-//				selectList.add(cMap.get(key));
-//			}
-//		}
-//		return selectList;
-//	}
+	public List<ProductDTO> findBuy(String select, int menu) {
+		List<ProductDTO> selectList = new ArrayList<>();
+		//검색 정렬
+		List<String> keySet = new ArrayList<>(pMap.keySet());
+		Collections.sort(keySet);
+		
+		for(String key : keySet) {
+			if(select.equals(pMap.get(key).getPname()) && menu == 1) {
+				selectList.add(pMap.get(key));
+			} else if(select.equals(pMap.get(key).getCategory()) && menu == 2) {
+				selectList.add(pMap.get(key));
+			}
+		}
+		return selectList;
+	}
 	
 
 }

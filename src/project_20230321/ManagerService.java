@@ -32,7 +32,7 @@ public class ManagerService implements UserInt {
 					}
 				}
 				userDTO.setId(inputStr);
-				if(util.overrapCheck(repository.findAll(), userDTO.getId(), 1)) {
+				if(util.overrapCheck(repository.findAll(), userDTO.getId(), 0)) {
 					System.out.println("중복된 아이디가 있습니다. 다시입력");
 				} else {
 					break;
@@ -151,7 +151,7 @@ public class ManagerService implements UserInt {
 		
 		if(pwOk.equals(loginPw)) {
 			while(true) {
-				System.out.println("정말 탈퇴하시겠습니까? 1.Y 2.N> ");
+				System.out.println("정말 탈퇴하시겠습니까? 1.Y 2.N ");
 				int menu = util.menu();
 				
 				if(menu == 1) {
