@@ -196,6 +196,27 @@ public class ProductService {
 		}
 	}
 	
+	public void testData() {
+		boolean ok = false;
+		for(int i = 1; i < 6; i++) {
+			ProductDTO productDTO = new ProductDTO();
+			if(i % 2 == 0) {
+				productDTO.setPname("상의" + i);
+				productDTO.setCategory("상의");
+			} else {
+				productDTO.setPname("하의" + i);
+				productDTO.setCategory("하의");
+			}
+			productDTO.setCost(i*1000);
+			productDTO.setStock(i*100);
+			ok = repository.save(productDTO);
+		}
+		if(ok) {
+			System.out.println("상품 테스트데이터 저장완료");
+		} else {
+			System.out.println("상품 테스트데이터 저장실패");
+		}
+	}
 	
 
 }

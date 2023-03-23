@@ -175,5 +175,22 @@ public class ManagerService implements UserInt {
 		return true;		
 	}	
 	
+	public void testData() {
+		boolean ok = false;
+		for(int i = 1; i < 6; i++) {
+			UserDTO userDTO = new UserDTO();
+			userDTO.setId("mana" + i);
+			userDTO.setPw("pw" + i);
+			userDTO.setName("관리자" + i);
+			userDTO.setPhoneNumber("010-" + i + i + i + i + "-" + i + i + i + i );
+			userDTO.setManagerOk(0);
+			ok = repository.save(userDTO);
+		}
+		if(ok) {
+			System.out.println("상품 테스트데이터 저장완료");
+		} else {
+			System.out.println("상품 테스트데이터 저장실패");
+		}
+	}
 
 }

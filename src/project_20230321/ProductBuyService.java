@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import day13.BreakdownDTO;
 import day17.ClientDTO;
 
 public class ProductBuyService {
@@ -33,7 +34,7 @@ public class ProductBuyService {
 				i++;
 			}
 			while(true) {
-				System.out.println("구매하시겠습니까? 1.Y 2.N> ");
+				System.out.println("구매하시겠습니까? 1.Y 2.N ");
 				int menu = util.menu();
 				
 				if(menu == 1) {
@@ -145,17 +146,30 @@ public class ProductBuyService {
 				System.out.println("상품코드 확인필요");
 			} else {
 				while(true) {
-					long ea = -1;
-					ea = util.numberCheck("구매할 수량");
-
+//					long ea = -1;
+//					ea = util.numberCheck("구매할 수량");
+					
+					long ea = 0;
+					System.out.print("구매할 수량> ");
+					String strEa = util.skip(sc.nextLine(), "");
+//					System.out.println(strEa);
+					if(strEa == "") {
+						strEa = "0";
+					}
+					if(util.isNumeric(strEa)) {
+						ea = Long.parseLong(strEa);
+					} else {
+						System.out.println("숫자만 입력가능");
+					}
+					
 					if(ea > 0) {
 						UserDTO userDTO = memberService.loginUser();
 						if(ea <= productDTO.getStock()) {
-							long price = productDTO.getCost();
-							if((price*ea) <= userDTO.getBalance()) {
+//							long price = productDTO.getCost();
+							if((productDTO.getCost()*ea) <= userDTO.getBalance()) {
 								productrepository.stockReduction(productDTO.getPno(), ea);
-								memberRepository.balanceReduction(userDTO.getId(), userDTO.getPw(), (price*ea));
-								
+								memberRepository.balanceReduction(userDTO.getId(), userDTO.getPw(), (productDTO.getCost()*ea));
+								productBuyRepository.buyBreakdown(userDTO, productDTO, ea);
 								return true;
 							} else {
 								System.out.println("잔액이 부족합니다");
@@ -167,7 +181,7 @@ public class ProductBuyService {
 						}
 					} 
 					else {
-						System.out.println("0보다 큰수를 입력하세요");
+						System.out.println("0보다 큰 수를 입력하세요");
 					}
 					
 //					long ea = 0;
@@ -202,6 +216,45 @@ public class ProductBuyService {
 			}
 		}
 		return false;
+	}
+	
+	public void orderBreakdown() {
+		UserDTO loginUserDTO = memberService.loginUser();
+		UserDTO userDTO = memberRepository.findById(loginUserDTO.getId(), loginUserDTO.getPw());
+		if(userDTO == null) {
+			System.out.println("로그인 오류");
+		} else {
+			System.out.println("아이디\t패스워드\t이름\t휴대폰번호\t주소\t보유금액\t생성날짜");
+			System.out.println("---------------------------------------------------------------------------");
+			System.out.println(userDTO.toString());
+			System.out.println("---------------------------------------------------------------------------");
+			List<OrderDTO> oList  = productBuyRepository.orderList(userDTO.getId());
+			if(oList.size() == 0) {
+				System.out.println("구매내역이 없습니다");
+			} else {				
+				System.out.println("▼구매내역▼");
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("주문번호\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t구매금액\t구매날짜");
+				for(OrderDTO o : oList) {
+					o.print();
+				}
+				System.out.println("------------------------------------------------------------------");
+			}
+		}
+	}
+	
+	public void saleBreakdown() {
+		List<OrderDTO> oList = productBuyRepository.orderAll();
+		if(oList.size() == 0) {
+			System.out.println("구매내역이 없습니다");
+		} else {
+			System.out.println("------------------------------------------------------------------");
+			System.out.println("주문번호\t구매회원아이디\t구매회원이름\t상품코드\t상품명\t상품분류\t상품금액\t구매수량\t판매금액\t판매후재고\t판매날짜");
+			for(OrderDTO o : oList) {
+				System.out.println(o.toString());
+			}
+			System.out.println("------------------------------------------------------------------");
+		}
 	}
 	
 	

@@ -16,6 +16,7 @@ public class OrderDTO {
 	private long cost;		//상품 금액
 	private long ea;		//구매한 상품 개수
 	private long amount;	//합계금액
+	private long stock;
 	private String orderDate;
 	
 	public OrderDTO() {
@@ -77,11 +78,25 @@ public class OrderDTO {
 	public void setAmount(long amount) {
 		this.amount = amount;
 	}
+	public long getStock() {
+		return stock;
+	}
+	public void setStock(long stock) {
+		this.stock = stock;
+	}
 	public String getOrderDate() {
 		return orderDate;
 	}
 	
-	
-	
+	public void print() {
+		System.out.printf("%s\t%s\t%s\t%s\t%d\t%d\t%d\t%s\n", ono, pno, pname, category, cost, ea, amount, orderDate);
+	}
+
+	@Override
+	public String toString() {
+		String str = ono + "\t" + id + "\t" + name + "\t" + pno + "\t" + pname + "\t" + category + "\t" + cost + "\t" + ea + "\t" + amount + "\t" + stock + "\t" + orderDate;
+		
+		return str;
+	}
 
 }

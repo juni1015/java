@@ -3,6 +3,8 @@ package project_20230321;
 import java.util.List;
 import java.util.Scanner;
 
+import day8.User;
+
 public class MemberService implements UserInt {
 	private static MemberService service = new MemberService();
 	private MemberService() {}
@@ -183,6 +185,26 @@ public class MemberService implements UserInt {
 	public UserDTO loginUser() {
 		UserDTO userDTO = repository.findById(loginId, loginPw);
 		return userDTO;
+	}
+	
+	public void testData() {
+		boolean ok = false;
+		for(int i = 1; i < 6; i++) {
+			UserDTO userDTO = new UserDTO();
+			userDTO.setId("mem" + i);
+			userDTO.setPw("pw" + i);
+			userDTO.setName("회원" + i);
+			userDTO.setPhoneNumber("010-" + i + i + i + i + "-" + i + i + i + i );
+			userDTO.setAddress("인천");
+			userDTO.setBalance(i*10000);
+			userDTO.setManagerOk(1);
+			ok = repository.save(userDTO);
+		}
+		if(ok) {
+			System.out.println("상품 테스트데이터 저장완료");
+		} else {
+			System.out.println("상품 테스트데이터 저장실패");
+		}
 	}
 	
 }
