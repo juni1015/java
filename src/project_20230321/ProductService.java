@@ -182,7 +182,7 @@ public class ProductService {
 			System.out.println("조회한 상품이 없습니다");
 		} else {
 			while(true) {
-				System.out.println("정말 삭제하시겠습니까? 1.Y 2.N> ");
+				System.out.println("정말 삭제하시겠습니까? 1.Y 2.N ");
 				int menu = util.menu();
 				
 				if(menu == 1) {

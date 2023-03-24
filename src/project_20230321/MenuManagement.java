@@ -30,6 +30,7 @@ public class MenuManagement {
 		} else {
 			System.out.println("다시입력");
 		}
+		System.out.println();
 		return 1;
 	}
 	
@@ -49,6 +50,7 @@ public class MenuManagement {
 		} else {
 			System.out.println("다시입력");
 		}
+		System.out.println();
 		return 1;
 	}
 }

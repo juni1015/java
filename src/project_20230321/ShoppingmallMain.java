@@ -125,6 +125,7 @@ public class ShoppingmallMain {
 				} else {
 					System.out.println("다시 입력");
 				}
+				System.out.println();
 			}
 			if(menu != 0) {
 				System.out.println();

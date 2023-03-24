@@ -136,6 +136,7 @@ public class ProductBuyService {
 		} else {
 			System.out.println("다시입력");
 		}
+		System.out.println();
 		return 1;
 	}
 	

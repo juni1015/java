@@ -54,8 +54,8 @@ public class ManagerService implements UserInt {
 			userDTO.setName(inputStr);
 			System.out.print("휴대폰번호> ");
 			userDTO.setPhoneNumber(util.skip(sc.nextLine(), userDTO.getPhoneNumber()));
-			System.out.print("주소> ");
-			userDTO.setAddress(util.skip(sc.nextLine(), userDTO.getAddress()));
+//			System.out.print("주소> ");
+//			userDTO.setAddress(util.skip(sc.nextLine(), userDTO.getAddress()));
 			
 			if(repository.save(userDTO)) {
 				System.out.println("회원가입 완료");
@@ -123,9 +123,9 @@ public class ManagerService implements UserInt {
 			String name = util.skip(sc.nextLine(), userDTO.getName());
 			System.out.print("휴대폰번호> ");
 			String phoneNumber = util.skip(sc.nextLine(), userDTO.getPhoneNumber());
-			System.out.print("주소> ");
-			String address = util.skip(sc.nextLine(), userDTO.getAddress());
-			if(repository.update(loginId, loginPw, pw, name, phoneNumber, address)) {
+//			System.out.print("주소> ");
+//			String address = util.skip(sc.nextLine(), userDTO.getAddress());
+			if(repository.update(loginId, loginPw, pw, name, phoneNumber, null)) {
 				loginPw = pw;
 				System.out.println("수정완료");
 			} else {
