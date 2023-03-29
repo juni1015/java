@@ -2,42 +2,42 @@ package study;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-public class ClientDTO {
-	/*
-	 * toString에 대해 제대로 알지 못하여 사용하는데 문제 있음
-	 */
+public class AccountDTO {
+	private static int fNumber = 100;
+	private static int number = 1000;
 	private final static DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yy/MM/dd hh:mm:ss");
 	
+	private String account;
 	private String id;
-	private String pw;
-	private String name;
+	private long balance;
 	private int purpose;	//목적
 	private String joinDate;
-	private String acoount;
 	
-	public void ClientDTO() {
+	public void AccountDTO() {
+	}
+	public void AccountDTO(String id) {
+		if(number == 1010) {
+			fNumber++;
+			number = 1000;
+		}
+		this.account = fNumber + "-" + number++;
 		this.joinDate = DTF.format(LocalDateTime.now());
 	}
-	
+	public String getAccount() {
+		return account;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
-		return pw;
+	public long getBalance() {
+		return balance;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public void setBalance(long balance) {
+		this.balance = balance;
 	}
 	public int getPurpose() {
 		return purpose;
@@ -48,10 +48,5 @@ public class ClientDTO {
 	public String getJoinDate() {
 		return joinDate;
 	}
-	
-//	@Override
-//	public String toString() {
-//		String str = 
-//		return super.toString();
-//	}
+
 }

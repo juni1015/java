@@ -81,7 +81,7 @@ public class ClientMain {
 				if(loginOk) {
 					
 				} else {
-					
+					service.findAll();
 				}
 			} else if(menu == 4) {
 				if(loginOk) {
